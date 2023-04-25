@@ -1,6 +1,6 @@
 import Intro from "../components/Intro";
 
-const Main = () => {
+const Main = ({ account }) => {
   return (
     <div>
       <Intro />
