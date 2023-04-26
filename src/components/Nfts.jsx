@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import NftCard from "./NftCard";
 
-const Nfts = ({ page }) => {
+const Nfts = ({ page, mintedNft }) => {
   const [selectedPage, setSelectedPage] = useState(1);
   const [nfts, setNfts] = useState();
 
@@ -9,8 +10,11 @@ const Nfts = ({ page }) => {
     try {
       let nftArray = [];
 
+      setNfts();
+
       for (let i = 0; i < 10; i++) {
         const tokenId = i + 1 + (p - 1) * 10;
+        // i+1 -> 1~10 // 페이지 p-1갯수 만큼 *10
 
         let response = await axios.get(
           `${process.env.REACT_APP_JSON_URL}/${tokenId}.json`
@@ -27,6 +31,8 @@ const Nfts = ({ page }) => {
 
   const onClickPage = (p) => () => {
     setSelectedPage(p);
+
+    getNfts(p);
   };
 
   const pageComp = () => {
@@ -58,8 +64,24 @@ const Nfts = ({ page }) => {
   }, []);
 
   return (
-    <div>
+    <div className="max-w-screen-xl mx-auto pt-4">
       <div>{pageComp()}</div>
+      <ul className="mt-8 grid grid-cols-1 xl:grid-cols-2 justify-items-center gap-8">
+        {nfts ? (
+          nfts.map((v, i) => {
+            return (
+              <NftCard
+                key={i}
+                tokenId={v.tokenId}
+                metadata={v.metadata}
+                mintedNft={mintedNft}
+              />
+            );
+          })
+        ) : (
+          <div>로딩중입니다...</div>
+        )}
+      </ul>
     </div>
   );
 };

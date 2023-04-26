@@ -9,7 +9,7 @@ const Intro = ({ totalNft, mintedNft, myNft }) => {
     <div className="bg-gradient-to-b from-transparent to-red-400 pt-10 ">
       <div className="max-w-screen-xl mx-auto px-4 relative">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-yellow-300 text-9xl truncate opacity-40">
-          Da Den Bu
+          Joseon Dynasty
         </div>
         <div className="relative">
           <img

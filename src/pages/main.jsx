@@ -34,7 +34,7 @@ const Main = ({ account }) => {
 
       // 10 - 1 = 9 /10 = 0 + 1 = 1page
       // 31 - 1 = 30 / 10 = 3 + 1 = 4page
-      setPage((parseInt(response) - 1) / 10 + 1);
+      setPage(parseInt((parseInt(response) - 1) / 10) + 1);
     } catch (error) {
       console.error(error);
     }
@@ -63,7 +63,7 @@ const Main = ({ account }) => {
   return (
     <>
       <Intro totalNft={totalNft} mintedNft={mintedNft} myNft={myNft} />
-      <Nfts page={page} />
+      <Nfts page={page} mintedNft={mintedNft} />
     </>
   );
 };
